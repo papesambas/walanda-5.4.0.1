@@ -30,6 +30,11 @@ class Cycles
         $this->niveauxes = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->designation;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -56,27 +56,22 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToRoute('Mon Blog', 'fa fa-blog', 'app_blog');
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', Users::class);
         yield MenuItem::subMenu('Etablissements', 'fas fa-university')->setSubItems([
-            MenuItem::linkToCrud('Liste des établissements', 'fas fa-list', Etablissements::class),
+            MenuItem::linkToCrud('Liste établissements', 'fas fa-list', Etablissements::class),
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Etablissements::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Types d\'enseignements', 'fas fa-list', Enseignements::class),
+            MenuItem::linkToCrud('Types d\'enseign', 'fas fa-list', Enseignements::class),
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Enseignements::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Cycles d\'enseignement', 'fas fa-list', Cycles::class),
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Cycles::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Niveaux d\'enseignement', 'fas fa-list', Niveaux::class),
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Niveaux::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Liste des Cycles', 'fas fa-list', Cycles::class),
+            MenuItem::linkToCrud('Ajouter un Cycle', 'fas fa-plus', Cycles::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Liste Niveaux', 'fas fa-list', Niveaux::class),
+            MenuItem::linkToCrud('Ajouter un Niveau', 'fas fa-plus', Niveaux::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Liste des Classe', 'fas fa-list', Classes::class),
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Classes::class)->setAction(Crud::PAGE_NEW),
-
-
-
-
-
+            MenuItem::linkToCrud('Ajouter une Classe', 'fas fa-plus', Classes::class)->setAction(Crud::PAGE_NEW),
         ]);
         yield MenuItem::subMenu('Publications', 'fas fa-newspaper')->setSubItems([
-            MenuItem::linkToCrud('Toutes les publications', 'fas fa-list', Publications::class),
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Publications::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Toutes les catÃ©gories', 'fas fa-list', Categories::class),
-            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Categories::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Liste les publications', 'fas fa-list', Publications::class),
+            MenuItem::linkToCrud('Ajouter Publication', 'fas fa-plus', Publications::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Toutes les catégories', 'fas fa-list', Categories::class),
+            MenuItem::linkToCrud('Ajouter une Catégorie', 'fas fa-plus', Categories::class)->setAction(Crud::PAGE_NEW),
         ]);
     }
 }

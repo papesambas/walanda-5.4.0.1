@@ -61,10 +61,18 @@ class Etablissements
     #[ORM\OneToMany(mappedBy: 'etablissement', targetEntity: Users::class)]
     private Collection $users;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->enseignements = new ArrayCollection();
         $this->users = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->designation;
     }
 
     public function getId(): ?int
@@ -284,6 +292,18 @@ class Etablissements
                 $user->setEtablissement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

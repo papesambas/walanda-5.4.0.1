@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -23,10 +24,10 @@ class EtablissementsCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Publications')
-            ->setEntityLabelInSingular('Publication')
-            ->setSearchFields(['titre', 'user.username', 'contenu', 'categorie.nom'])
-            ->setDefaultSort(['createdAt' => 'DESC', 'titre' => 'ASC']);
+            ->setEntityLabelInPlural('Etablissements')
+            ->setEntityLabelInSingular('Etablissement')
+            ->setSearchFields(['designation'])
+            ->setDefaultSort(['createdAt' => 'DESC', 'designation' => 'ASC']);
     }
 
 
@@ -34,7 +35,7 @@ class EtablissementsCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('designation');
-        yield TextField::new('slug')->onlyOnDetail();
+        //yield SlugField::new('slug')->setTargetFieldName('designation')->hideOnIndex();
         yield ChoiceField::new('forme')->setChoices([
             'Entrepreneur individuel' => 'E.I',
             'Entreprise unipersonnelle à responsabilité limitée' => 'E.U.R.L.',

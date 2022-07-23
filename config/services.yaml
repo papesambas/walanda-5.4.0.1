@@ -23,6 +23,20 @@ services:
     App\EventListener\publicationsEntityListener:
         tags:
             - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Publications'}
-
+    App\EventListener\etablissementsEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Etablissements'}
+    App\EventListener\niveauxEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Niveaux'}
+    App\EventListener\classesEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Classes'}
+    App\EventListener\usersEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Users'}
+    App\EventListener\categoriesEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Categories'}
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

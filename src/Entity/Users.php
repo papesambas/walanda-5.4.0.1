@@ -51,10 +51,10 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Etablissements $etablissement = null;
 
     #[ORM\Column]
-    private ?bool $isActif = null;
+    private ?bool $isActif = false;
 
     #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    private $isVerified = true;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Publications::class, orphanRemoval: true)]
     private Collection $publications;
@@ -66,6 +66,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->publications = new ArrayCollection();
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->username;
     }
 
     public function getId(): ?int

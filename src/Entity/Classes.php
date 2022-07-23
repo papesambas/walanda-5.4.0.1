@@ -29,6 +29,11 @@ class Classes
     #[ORM\Column(length: 128)]
     private ?string $slug = null;
 
+    public function __toString()
+    {
+        return $this->designation;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
