@@ -3,7 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Etablissements;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
 class EtablissementsCrudController extends AbstractCrudController
 {
@@ -12,14 +20,42 @@ class EtablissementsCrudController extends AbstractCrudController
         return Etablissements::class;
     }
 
-    /*
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Publications')
+            ->setEntityLabelInSingular('Publication')
+            ->setSearchFields(['titre', 'user.username', 'contenu', 'categorie.nom'])
+            ->setDefaultSort(['createdAt' => 'DESC', 'titre' => 'ASC']);
+    }
+
+
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield IdField::new('id')->hideOnForm();
+        yield TextField::new('designation');
+        yield TextField::new('slug')->onlyOnDetail();
+        yield ChoiceField::new('forme')->setChoices([
+            'Entrepreneur individuel' => 'E.I',
+            'Entreprise unipersonnelle à responsabilité limitée' => 'E.U.R.L.',
+            'Société à responsabilité limitée' => 'S.A.R.L.',
+            'Société anonyme' => 'S.A.',
+            'Société par actions simplifiée unipersonnelle' => 'S.A.S.U.',
+            'Société par actions simplifiée' => 'S.A.S',
+            'Société en nom collectif' => 'S.N.C',
+            'Société en commandite simple' => 'S.C.S',
+            'Société en commandite par actions' => 'S.C.A'
+        ]);
+        yield TextareaField::new('adresse');
+        yield TextField::new('numDecisionCreation');
+        yield TextField::new('numDecisionOuverture');
+        yield DateTimeField::new('dateOuverture');
+        yield TextField::new('numSocial');
+        yield TextField::new('numFiscal');
+        yield TextField::new('cpteBancaire');
+        yield TelephoneField::new('telephone');
+        yield TelephoneField::new('telephoneMobile');
+        yield EmailField::new('email');
+        //    //TextEditorField::new('description'),
     }
-    */
 }
