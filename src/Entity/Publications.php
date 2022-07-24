@@ -57,6 +57,9 @@ class Publications
     #[ORM\OneToMany(mappedBy: 'publication', targetEntity: Comments::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\ManyToOne]
+    private ?Medias $featuredImage = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -243,6 +246,18 @@ class Publications
                 $comment->setPublication(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFeaturedImage(): ?Medias
+    {
+        return $this->featuredImage;
+    }
+
+    public function setFeaturedImage(?Medias $featuredImage): self
+    {
+        $this->featuredImage = $featuredImage;
 
         return $this;
     }

@@ -54,7 +54,11 @@ class DashboardController extends AbstractDashboardController
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
         yield MenuItem::linkToRoute('Mon Site', 'fa fa-home', 'app_home');
         yield MenuItem::linkToRoute('Mon Blog', 'fa fa-blog', 'app_blog');
-        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', Users::class);
+        yield MenuItem::subMenu('Utlisateurs', 'fas fa-users')->setSubItems([
+            MenuItem::linkToCrud('Liste Utlisateurs', 'fas fa-users', Users::class),
+            MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Users::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Afficher', 'fas fa-plus', Users::class)->setAction(Crud::PAGE_DETAIL),
+        ]);
         yield MenuItem::subMenu('Etablissements', 'fas fa-university')->setSubItems([
             MenuItem::linkToCrud('Liste établissements', 'fas fa-list', Etablissements::class),
             MenuItem::linkToCrud('Ajouter', 'fas fa-plus', Etablissements::class)->setAction(Crud::PAGE_NEW),
