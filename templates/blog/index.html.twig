@@ -8,5 +8,26 @@
 		<div class="alert alert-success" role="alert">{{ message }}</div>
 	{% endfor %}
 
-	Bienvenu sur le Blog
+	<div class="container-fluid mx-3">
+		<div class="row">
+			<div class="col-md-3" style="min-height:36rem;">
+				<div class="position-sticky" style="top: 2rem ;">
+					{% include "widget/about.html.twig" %}
+					{% include "widget/categories.html.twig" %}
+					{#{% include "widget/niveaux.html.twig" %} #}
+				</div>
+			</div>
+			<div class="col-md-9">
+				<h3 class="pb-4 fst-italic border-bottom">Publications récentes</h3>
+				<div id="publication-list">
+					<div class="row">
+						<div
+							class="col">{# {% include "publications/list.html.twig" with {publications} %} #}
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 {% endblock %}

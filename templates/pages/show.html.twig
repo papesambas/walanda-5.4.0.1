@@ -1,42 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'blog/base.html.twig' %}
 
-{% block title %}Pages{% endblock %}
+{% block title %}Pages
+{% endblock %}
 
 {% block body %}
-    <h1>Pages</h1>
+	<h1>Pages</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ page.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ page.titre }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ page.slug }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ page.contenu }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ page.createdAt ? page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ page.updatedAt ? page.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ page.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ page.titre }}</td>
+			</tr>
+			<tr>
+				<th>Slug</th>
+				<td>{{ page.slug }}</td>
+			</tr>
+			<tr>
+				<th>Contenu</th>
+				<td>{{ page.contenu }}</td>
+			</tr>
+			<tr>
+				<th>CreatedAt</th>
+				<td>{{ page.createdAt ? page.createdAt|format_datetime('short', 'medium') }}</td>
+			</tr>
+			<tr>
+				<th>UpdatedAt</th>
+				<td>{{ page.updatedAt ? page.updatedAt|format_datetime('medium', 'short') }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_pages_index') }}">back to list</a>
+	<a href="{{ path('app_pages_index') }}">back to list</a>
 
-    <a href="{{ path('app_pages_edit', {'slug': page.slug}) }}">edit</a>
+	<a href="{{ path('app_pages_edit', {'slug': page.slug}) }}">edit</a>
 
-    {{ include('pages/_delete_form.html.twig') }}
+	{{ include('pages/_delete_form.html.twig') }}
 {% endblock %}

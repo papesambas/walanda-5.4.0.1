@@ -20,8 +20,8 @@ class usersEntityListener
 
     public function prePersist(Users $users, LifecycleEventArgs $arg): void
     {
-        /* $user = $this->Securty->getUser();
-        if ($user === null) {
+        $user = $this->Securty->getUser();
+        /*if ($user === null) {
             throw new \LogicException('User cannot be null here ...');
         }*/
 

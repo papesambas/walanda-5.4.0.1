@@ -29,7 +29,7 @@ class Publications
     private ?string $featuredText = null;
 
     #[ORM\Column]
-    private ?bool $isActive = null;
+    private ?bool $isActive = false;
 
     #[ORM\Column]
     private ?bool $isPublished = null;
@@ -42,7 +42,7 @@ class Publications
     private ?Users $author = null;
 
     #[ORM\Column]
-    private ?bool $favoris = null;
+    private ?bool $favoris = false;
 
     #[ORM\ManyToOne(inversedBy: 'publications')]
     #[ORM\JoinColumn(nullable: false)]
