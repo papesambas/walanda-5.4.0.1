@@ -21,9 +21,9 @@ class classesEntityListener
     public function prePersist(Classes $classes, LifecycleEventArgs $arg): void
     {
         $user = $this->Securty->getUser();
-        if ($user === null) {
+        /*if ($user === null) {
             throw new \LogicException('User cannot be null here ...');
-        }
+        }*/
 
         $classes
             //->setCreatedAt(new \DateTimeImmutable('now'))

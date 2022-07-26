@@ -1,0 +1,15 @@
+<div class="p-4 mb-3 rounded">
+	<h4 class="fst-italic">Niveaux</h4>
+	<ol class="list-unstyle mb-0">
+		{% if niveaux|length > 0 %}
+			{% for niveau in niveaux %}
+				<li>
+					<a class="text-decoration-none" href="{{path('app_niveaux_show', {'slug': niveau.slug})}}">{{ niveau.designation}}</a>
+				</li>
+			{% endfor %}
+		{% else %}
+			<div>No comments have been posted yet for this conference.</div>
+		{% endif %}
+
+	</ol>
+</div>

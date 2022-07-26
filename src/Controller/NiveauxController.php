@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Niveaux;
 use App\Form\NiveauxType;
+use App\Entity\Categories;
 use App\Repository\NiveauxRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/niveaux')]
 class NiveauxController extends AbstractController
@@ -41,10 +43,15 @@ class NiveauxController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'app_niveaux_show', methods: ['GET'])]
-    public function show(Niveaux $niveau): Response
+    public function show(Request $request, Niveaux $niveau, Categories $categories, CategoriesRepository $categoriesRepos): Response
     {
+
+        $categorie = $categoriesRepos->getCategorieNiveau($niveau, '');
+        dd($categorie);
+
         return $this->render('niveaux/show.html.twig', [
             'niveau' => $niveau,
+            'categories' => $categorie
         ]);
     }
 

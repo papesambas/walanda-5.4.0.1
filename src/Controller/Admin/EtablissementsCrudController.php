@@ -47,13 +47,13 @@ class EtablissementsCrudController extends AbstractCrudController
             'Société en commandite simple' => 'S.C.S',
             'Société en commandite par actions' => 'S.C.A'
         ]);
-        yield TextareaField::new('adresse');
-        yield TextField::new('numDecisionCreation');
-        yield TextField::new('numDecisionOuverture');
+        yield TextareaField::new('adresse')->hideOnIndex();
+        yield TextField::new('numDecisionCreation')->hideOnIndex();
+        yield TextField::new('numDecisionOuverture')->hideOnIndex();
         yield DateTimeField::new('dateOuverture');
-        yield TextField::new('numSocial');
-        yield TextField::new('numFiscal');
-        yield TextField::new('cpteBancaire');
+        yield TextField::new('numSocial')->hideOnIndex();
+        yield TextField::new('numFiscal')->hideOnIndex();
+        yield TextField::new('cpteBancaire')->hideOnIndex();
         yield TelephoneField::new('telephone');
         yield TelephoneField::new('telephoneMobile');
         yield EmailField::new('email');

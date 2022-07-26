@@ -28,27 +28,13 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create('fr_FR');
-        for ($i = 1; $i <= 2; $i++) {
+        for ($i = 1; $i < 2; $i++) {
             if ($i === 1) {
                 $etablissement = new Etablissements();
                 $etablissement->setAdresse("Baco Djicoroni Plateau rue N.C");
                 $etablissement->setCpteBancaire($faker->creditCardNumber('Visa', true, '-'));
                 $etablissement->setDateOuverture(new \DateTimeImmutable());
                 $etablissement->setDesignation("Mamadou TRAORE");
-                $etablissement->setEmail("EMPT@gmail.com");
-                $etablissement->setForme("Unipersonnel");
-                $etablissement->setNumDecisionCreation($faker->bothify('??-####-??-###'));
-                $etablissement->setNumDecisionOuverture($faker->bothify('??-####-??-###'));
-                $etablissement->setNumFiscal($faker->bothify('####-??-###'));
-                $etablissement->setNumSocial($faker->bothify('####-?-#####-??'));
-                $etablissement->setTelephone("76 16 69 91");
-                $etablissement->setTelephoneMobile("66 74 24 34");
-            } else {
-                $etablissement = new Etablissements();
-                $etablissement->setAdresse("Baco Djicoroni Plateau rue N.C");
-                $etablissement->setCpteBancaire($faker->creditCardNumber('Visa', true, '-'));
-                $etablissement->setDateOuverture(new \DateTimeImmutable());
-                $etablissement->setDesignation("Ecole Fondamentale");
                 $etablissement->setEmail("EMPT@gmail.com");
                 $etablissement->setForme("Unipersonnel");
                 $etablissement->setNumDecisionCreation($faker->bothify('??-####-??-###'));
@@ -80,7 +66,7 @@ class AppFixtures extends Fixture
                 $user->setUsername('superadmin');
                 $user->setRoles(["ROLE_SUPERADMIN"]);
             } elseif ($i === 2) {
-                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(2, 2));
+                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 1));
                 $user = new Users();
                 $password = 'azerty';
                 $password = $this->encoder->hashPassword($user, 'password');
@@ -122,7 +108,7 @@ class AppFixtures extends Fixture
                 $user->setUsername('aimee');
                 $user->setRoles(["ROLE_ADMIN"]);
             } elseif ($i <= 8) {
-                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 2));
+                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 1));
                 $user = new Users();
                 $password = 'azerty';
                 $password = $this->encoder->hashPassword($user, 'password');
@@ -169,17 +155,17 @@ class AppFixtures extends Fixture
                 $enseignement->setEtablissement($etablissement);
                 $enseignement->setType("Secondaire");
             } elseif ($i === 4) {
-                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(2, 2));
+                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 1));
                 $enseignement = new Enseignements();
                 $enseignement->setEtablissement($etablissement);
                 $enseignement->setType("PréScolaire");
             } elseif ($i === 5) {
-                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(2, 2));
+                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 1));
                 $enseignement = new Enseignements();
                 $enseignement->setEtablissement($etablissement);
                 $enseignement->setType("Fondamental");
             } elseif ($i === 6) {
-                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(2, 2));
+                $etablissement = $this->getReference('etablissement_' . $faker->numberBetween(1, 1));
                 $enseignement = new Enseignements();
                 $enseignement->setEtablissement($etablissement);
                 $enseignement->setType("Secondaire");
@@ -188,7 +174,7 @@ class AppFixtures extends Fixture
             $manager->persist($enseignement);
             $this->addReference('enseignement_' . $i, $enseignement);
         }
-        for ($i = 1; $i <= 8; $i++) {
+        for ($i = 1; $i <= 4; $i++) {
             if ($i === 1) {
                 $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(1, 1));
                 $cycle = new Cycles();
@@ -204,28 +190,8 @@ class AppFixtures extends Fixture
                 $cycle = new Cycles();
                 $cycle->setDesignation("2nd Cycle");
                 $cycle->setEnseignement($enseignement);
-            } elseif ($i === 4) {
-                $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(3, 3));
-                $cycle = new Cycles();
-                $cycle->setDesignation("Secondaire");
-                $cycle->setEnseignement($enseignement);
-            } elseif ($i === 5) {
-                $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(4, 4));
-                $cycle = new Cycles();
-                $cycle->setDesignation("Jardin d'enfants");
-                $cycle->setEnseignement($enseignement);
-            } elseif ($i === 6) {
-                $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(5, 5));
-                $cycle = new Cycles();
-                $cycle->setDesignation("1er Cycle");
-                $cycle->setEnseignement($enseignement);
-            } elseif ($i === 7) {
-                $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(5, 5));
-                $cycle = new Cycles();
-                $cycle->setDesignation("2nd Cycle");
-                $cycle->setEnseignement($enseignement);
             } else {
-                $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(6, 6));
+                $enseignement = $this->getReference('enseignement_' . $faker->numberBetween(3, 3));
                 $cycle = new Cycles();
                 $cycle->setDesignation("Secondaire");
                 $cycle->setEnseignement($enseignement);
@@ -233,7 +199,7 @@ class AppFixtures extends Fixture
             $manager->persist($cycle);
             $this->addReference('cycle_' . $i, $cycle);
         }
-        for ($i = 1; $i <= 30; $i++) {
+        for ($i = 1; $i <= 15; $i++) {
             if ($i === 1) {
                 $cycle = $this->getReference('cycle_' . $faker->numberBetween(1, 1));
                 $niveau = new Niveaux();
@@ -304,83 +270,8 @@ class AppFixtures extends Fixture
                 $niveau = new Niveaux();
                 $niveau->setCycle($cycle);
                 $niveau->setDesignation("11ème Année");
-            } elseif ($i === 15) {
+            } else {
                 $cycle = $this->getReference('cycle_' . $faker->numberBetween(4, 4));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("Terminale");
-            } elseif ($i === 16) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(5, 5));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("Petite Section");
-            } elseif ($i === 17) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(5, 5));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("Moyenne Section");
-            } elseif ($i === 16) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(5, 5));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("Grande Section");
-            } elseif ($i === 19) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(6, 6));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("1ère Année");
-            } elseif ($i === 20) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(6, 6));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("2ème Année");
-            } elseif ($i === 21) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(6, 6));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("3ème Année");
-            } elseif ($i === 22) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(6, 6));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("4ème Année");
-            } elseif ($i === 23) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(6, 6));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("5ème Année");
-            } elseif ($i === 24) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(6, 6));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("6ème Année");
-            } elseif ($i === 25) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(7, 7));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("7ème Année");
-            } elseif ($i === 26) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(7, 7));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("8ème Année");
-            } elseif ($i === 27) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(7, 7));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("9ème Année");
-            } elseif ($i === 28) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(8, 8));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("10ème Année");
-            } elseif ($i === 29) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(8, 8));
-                $niveau = new Niveaux();
-                $niveau->setCycle($cycle);
-                $niveau->setDesignation("11ème Année");
-            } elseif ($i === 30) {
-                $cycle = $this->getReference('cycle_' . $faker->numberBetween(8, 8));
                 $niveau = new Niveaux();
                 $niveau->setCycle($cycle);
                 $niveau->setDesignation("Terminale");
